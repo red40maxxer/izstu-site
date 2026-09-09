@@ -27,8 +27,9 @@
   }
 }
 
-/* Import Work Sans font */
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+/* Work Sans is loaded via the stylesheet <link> in layout.tsx. An @import here
+   would sit after other rules, which is invalid CSS - browsers drop it and the
+   Tailwind v4 / Lightning CSS pipeline can reject it outright. */
 
 html {
   scroll-behavior: smooth;

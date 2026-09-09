@@ -48,7 +48,9 @@
 /* Image boxes: aspect-ratio holds the slot, the picture covers it. */
 .img {
   position: relative;
-  overflow: hidden;
+  /* visible, not hidden: the hover ink is drawn outside these bounds. The
+     picture fills the box exactly, so nothing overflows anyway. */
+  overflow: visible;
   display: block;
   align-self: start;
   justify-self: start;
@@ -58,6 +60,8 @@
 .img img {
   object-fit: cover;
   object-position: center;
+  /* rounding moves onto the picture, since the box no longer clips */
+  border-radius: inherit;
 }
 
 /* ---------------------------------------------------------------- header */

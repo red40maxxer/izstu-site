@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import InkBox from './components/InkBox';
 import s from './home.module.css';
 
 /* Home page. Layout geometry, type scale and image crops live in
@@ -55,6 +56,7 @@ export default function Home() {
               className={`${s.img} ${s.ytPortrait}`}
             >
               <Image src="/home/IMG_1928.png" alt="IMG_1928.PNG" fill quality={90} sizes="11vw" />
+              <InkBox />
             </a>
 
             <div className={`${s.rich} ${s.bio}`}>
@@ -82,6 +84,7 @@ export default function Home() {
                   className={`${s.img} ${s.thumb1}`}
                 >
                   <Image src="/home/yt-thumb-1.png" alt="" fill quality={90} sizes="24vw" />
+                  <InkBox />
                 </a>
                 <a
                   href="https://youtu.be/ADsPBZOKqmc?si=F8BoIkFjFpKhUQjH"
@@ -90,6 +93,7 @@ export default function Home() {
                   className={`${s.img} ${s.thumb2}`}
                 >
                   <Image src="/home/yt-thumb-2.png" alt="" fill quality={90} sizes="24vw" />
+                  <InkBox />
                 </a>
               </div>
             </div>

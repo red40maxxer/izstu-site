@@ -1,0 +1,532 @@
+/* Home page geometry.
+
+   Everything is sized from one scaling factor:
+       S = min(100vw, breakpointCap) - scrollbarWidth
+   with the cap at 1920px on desktop and 700px on the <=1023px breakpoint.
+   Widths and horizontal offsets are percentages of the parent grid cell;
+   vertical margins and font sizes are ratios of S. */
+
+.site {
+  --s: calc(min(100vw, 1920px) - 15px);
+  --cream: #FFFBEA;
+  background: #ffffff;
+  position: relative;
+  /* Page-level overflow wrapper. Several blocks deliberately overrun their
+     column (the mobile portrait is 103.56% wide), so the page clips instead of
+     growing a horizontal scrollbar. `clip`, not `hidden`: it must not become a
+     scroll container. */
+  overflow-x: clip;
+  overflow-y: clip;
+}
+
+@media screen and (max-width: 1023px) {
+  .site {
+    --s: calc(min(100vw, 700px) - 15px);
+  }
+}
+
+/* Every section spans the viewport; its inner grid caps at 1920px and centers. */
+.grid {
+  box-sizing: border-box;
+  max-width: 1920px;
+  margin-inline: auto;
+  display: grid;
+  row-gap: 0;
+  column-gap: 0;
+}
+
+/* Every block gets `position: relative`, so siblings sharing a grid cell stack
+   in DOM order. Text blocks need it too, or they paint underneath the images
+   they are meant to sit on top of. */
+.titleBox,
+.nameBox,
+.bio,
+.noteBox {
+  position: relative;
+}
+
+/* Image boxes: aspect-ratio holds the slot, the picture covers it. */
+.img {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  align-self: start;
+  justify-self: start;
+  margin-right: 0;
+}
+
+.img img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---------------------------------------------------------------- header */
+
+.hdrSection {
+  background: var(--cream);
+  /* reset the global `header {}` rule from globals.css */
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.hdrGrid {
+  grid-template-rows: 1fr;
+  grid-template-columns: minmax(0px, 1fr);
+}
+
+.banner {
+  grid-area: 1/1/2/2;
+  width: 94.18%;
+  aspect-ratio: 1/0.14831881907290972;
+  margin-left: 3.4397303727200637%;
+  margin-top: 0px;
+  margin-bottom: max(0.5px, calc(0.0003965 * var(--s)));
+}
+
+.titleBox {
+  grid-area: 1/1/2/2;
+  width: 33.85%;
+  align-self: start;
+  justify-self: start;
+  margin-left: 9.601754559873116%;
+  margin-top: max(0.5px, calc(0.0269627 * var(--s)));
+  margin-bottom: max(0.5px, calc(0.0496754 * var(--s)));
+}
+
+.titleBox h1 {
+  margin: 0;
+  font-family: Sarabun, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: max(0.5px, calc(0.0634417 * var(--s)));
+  line-height: 1em;
+  letter-spacing: 0em;
+  color: #000000;
+}
+
+@media screen and (max-width: 1023px) {
+  .banner {
+    aspect-ratio: 1/0.14829755558757146;
+    width: 90.97%;
+    margin-left: 4.519036388140162%;
+    margin-top: max(0.5px, calc(0.0383676 * var(--s)));
+    margin-bottom: max(0.5px, calc(0.0327662 * var(--s)));
+  }
+
+  .titleBox {
+    width: 87.7%;
+    margin-left: 6.153133423180593%;
+    margin-top: max(0.5px, calc(0.0518868 * var(--s)));
+    margin-bottom: max(0.5px, calc(0.0786725 * var(--s)));
+  }
+
+  .titleBox h1 {
+    text-align: center;
+    font-size: max(0.5px, calc(0.0754717 * var(--s)));
+  }
+}
+
+/* ------------------------------------------------------------- section 1 */
+
+.sec1 {
+  background: var(--cream);
+}
+
+.sec1Grid {
+  grid-template-rows: min-content min-content min-content min-content min-content 1fr;
+  grid-template-columns: minmax(0px, 1fr);
+}
+
+/* Video sits in the open space left of the name/bio column. Its left edge lines
+   up with the page title; its right edge stops short of the orange strip at
+   55.23%. */
+.video {
+  grid-area: 1/1/5/2;
+  align-self: start;
+  justify-self: start;
+  position: relative;
+  overflow: hidden;
+  width: 42%;
+  aspect-ratio: 16/9;
+  margin-left: 9.601754559873116%;
+  margin-top: max(0.5px, calc(0.0079 * var(--s)));
+  margin-bottom: 0px;
+  border-radius: max(0.5px, calc(0.0158604 * var(--s)));
+}
+
+/* Neutralise the global iframe rules in globals.css, which force
+   height:auto !important and a 16/9 aspect-ratio on every iframe. */
+.video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+  aspect-ratio: auto;
+  border: 0;
+  display: block;
+}
+
+.portrait {
+  grid-area: 1/1/5/2;
+  width: 39.07%;
+  aspect-ratio: 1/0.73;
+  margin-left: 56.817505947660585%;
+  margin-top: min(-0.5px, calc(-0.0021932 * var(--s)));
+  margin-bottom: max(0.5px, calc(0.0259715 * var(--s)));
+}
+
+.nameBox {
+  grid-area: 1/1/2/2;
+  width: 25.58%;
+  align-self: start;
+  justify-self: start;
+  margin-left: 64.74400277557494%;
+  margin-top: max(0.5px, calc(0.0167898 * var(--s)));
+  margin-bottom: min(-0.5px, calc(-0.0088719 * var(--s)));
+}
+
+.nameBox h6 {
+  margin: 0;
+  font-family: Sarabun, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: max(0.5px, calc(0.01875 * var(--s)));
+  line-height: 1.2em;
+  letter-spacing: 0em;
+  color: #000000;
+}
+
+.strip {
+  grid-area: 1/1/7/2;
+  width: 6.28%;
+  aspect-ratio: 1/3.685717723498976;
+  margin-left: 55.228984932593185%;
+  margin-top: max(0.5px, calc(0.0246456 * var(--s)));
+  margin-bottom: max(0.5px, calc(0.0528846 * var(--s)));
+}
+
+.ytPortrait {
+  grid-area: 3/1/4/2;
+  width: 10.72%;
+  aspect-ratio: 1/0.7299800196631884;
+  margin-left: 72.17362212529738%;
+  margin-top: 0px;
+  margin-bottom: max(0.5px, calc(0.0572586 * var(--s)));
+}
+
+.bio {
+  grid-area: 2/1/3/2;
+  width: 24.87%;
+  align-self: start;
+  justify-self: start;
+  margin-left: 64.74400277557494%;
+  margin-top: 0px;
+  margin-bottom: max(0.5px, calc(0.0190077 * var(--s)));
+}
+
+@media screen and (max-width: 1023px) {
+  /* No open space at this width, so the video stacks below the rest. */
+  .video {
+    grid-area: 5/1/6/2;
+    width: 87.69%;
+    margin-left: 6.153133423180593%;
+    margin-top: max(0.5px, calc(0.0615313 * var(--s)));
+    margin-bottom: max(0.5px, calc(0.0615313 * var(--s)));
+    border-radius: max(0.5px, calc(0.0512821 * var(--s)));
+  }
+
+  .portrait {
+    aspect-ratio: 1/0.7299361221843331;
+    width: 103.56%;
+    margin-left: 2.379548517520216%;
+    margin-top: max(0.5px, calc(0.0232901 * var(--s)));
+    margin-bottom: 0px;
+  }
+
+  .nameBox {
+    width: 87.69%;
+    margin-left: 22.056098382749326%;
+    margin-top: max(0.5px, calc(0.0958558 * var(--s)));
+    margin-bottom: min(-0.5px, calc(-0.0283019 * var(--s)));
+    text-align: start;
+  }
+
+  .nameBox h6 {
+    font-size: max(0.5px, calc(0.0512821 * var(--s)));
+  }
+
+  .strip {
+    grid-area: 1/1/6/2;
+    aspect-ratio: 1/3.6856748224151543;
+    width: 20.31%;
+    margin-left: -2.2026617250673857%;
+    margin-top: max(0.5px, calc(0.0232901 * var(--s)));
+    margin-bottom: 0px;
+  }
+
+  .ytPortrait {
+    aspect-ratio: 1/0.7299734134782107;
+    width: 34.66%;
+    margin-left: 21.407513477088948%;
+    margin-bottom: max(0.5px, calc(0.1115229 * var(--s)));
+  }
+
+  .bio {
+    width: 69.64%;
+    margin-left: 21.2474730458221%;
+    margin-bottom: min(-0.5px, calc(-0.0552561 * var(--s)));
+    text-align: start;
+  }
+}
+
+/* Paragraph blocks (bio + construction note) share one body style. */
+.rich {
+  font-family: "Wix Madefor Text", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: max(0.5px, calc(0.015625 * var(--s)));
+  line-height: 1.3em;
+  letter-spacing: 0em;
+  color: #000000;
+}
+
+.rich p {
+  margin: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .rich {
+    font-size: max(0.5px, calc(0.0461538 * var(--s)));
+  }
+}
+
+/* ------------------------------------------------------------- section 2 */
+
+.sec2 {
+  background: #ffffff;
+}
+
+.sec2Grid {
+  grid-template-rows: minmax(max(0.5px, calc(0.3125 * var(--s))), max-content);
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.col {
+  align-self: stretch;
+  justify-self: stretch;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: minmax(0px, 1fr);
+}
+
+.colA {
+  grid-area: 1/1/2/2;
+}
+
+.colB {
+  grid-area: 1/2/2/3;
+}
+
+.colC {
+  grid-area: 1/3/2/4;
+}
+
+.colInner {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0px, 1fr);
+  background: var(--cream);
+  padding: 0;
+}
+
+.colAInner {
+  grid-template-rows: min-content 1fr;
+  padding-bottom: max(0.5px, calc(0.0129114 * var(--s)));
+}
+
+.colBInner {
+  grid-template-rows: min-content min-content 1fr;
+  padding-bottom: max(0.5px, calc(0.0086861 * var(--s)));
+}
+
+.colCInner {
+  grid-template-rows: min-content 1fr;
+  padding-bottom: max(0.5px, calc(0.0142744 * var(--s)));
+}
+
+.thumb1 {
+  grid-area: 1/1/2/2;
+  width: 69%;
+  aspect-ratio: 1/0.5630914826498422;
+  margin-left: 15.49756514627709%;
+  margin-top: max(0.5px, calc(0.0569736 * var(--s)));
+  margin-bottom: max(0.5px, calc(0.0133451 * var(--s)));
+  border-radius: max(0.5px, calc(0.0158604 * var(--s)));
+}
+
+.thumb2 {
+  grid-area: 2/1/3/2;
+  width: 69%;
+  aspect-ratio: 1/0.5099630996309963;
+  margin-left: 15.49756514627709%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-radius: max(0.5px, calc(0.0158604 * var(--s)));
+}
+
+.wide {
+  grid-area: 1/1/2/2;
+  width: 62.76%;
+  aspect-ratio: 1/0.3727210368605366;
+  margin-left: 18.615716303620548%;
+  margin-top: max(0.5px, calc(0.0225268 * var(--s)));
+  margin-bottom: max(0.5px, calc(0.0059601 * var(--s)));
+}
+
+.square {
+  grid-area: 2/1/3/2;
+  width: 95.17%;
+  aspect-ratio: 1/0.4000428540818515;
+  margin-left: 2.416177235893242%;
+  margin-top: max(0.5px, calc(0.0003841 * var(--s)));
+  margin-bottom: max(0.5px, calc(0.0084259 * var(--s)));
+}
+
+.tile {
+  grid-area: 2/1/3/2;
+  width: 19.75%;
+  aspect-ratio: 1/0.8819699674472324;
+  margin-left: 77.87525091071295%;
+  margin-top: 0px;
+  margin-bottom: max(0.5px, calc(0.0778152 * var(--s)));
+  transform: rotate(325deg);
+}
+
+.photo {
+  grid-area: 3/1/4/2;
+  width: 32.79%;
+  aspect-ratio: 1/0.7282085339531806;
+  margin-left: 33.60344955765371%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.noteBox {
+  grid-area: 1/1/2/2;
+  width: 82.28%;
+  align-self: start;
+  justify-self: start;
+  margin-left: 12.84338872160886%;
+  margin-top: max(0.5px, calc(0.0404441 * var(--s)));
+  margin-bottom: max(0.5px, calc(0.0221426 * var(--s)));
+}
+
+.gif {
+  grid-area: 2/1/3/2;
+  width: 30.89%;
+  aspect-ratio: 1/1.182403160040776;
+  margin-left: 12.84338872160886%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+@media screen and (max-width: 1023px) {
+  .sec2Grid {
+    grid-template-rows:
+      minmax(max(0.5px, calc(0.5128194 * var(--s))), auto)
+      minmax(max(0.5px, calc(0.5128194 * var(--s))), auto)
+      minmax(max(0.5px, calc(0.5128194 * var(--s))), auto);
+    grid-template-columns: minmax(0px, 1fr);
+  }
+
+  .colA {
+    grid-area: 2/1/3/2;
+  }
+
+  .colB {
+    grid-area: 1/1/2/2;
+  }
+
+  .colC {
+    grid-area: 3/1/4/2;
+  }
+
+  .colAInner {
+    padding-bottom: max(0.5px, calc(0.0485175 * var(--s)));
+  }
+
+  .colBInner {
+    padding-bottom: max(0.5px, calc(0.0484754 * var(--s)));
+  }
+
+  .colCInner {
+    padding-bottom: max(0.5px, calc(0.0485175 * var(--s)));
+  }
+
+  .thumb1 {
+    aspect-ratio: 1/0.5630701754385965;
+    width: 87.69%;
+    margin-left: 6.153133423180593%;
+    margin-top: max(0.5px, calc(0.0615313 * var(--s)));
+    margin-bottom: max(0.5px, calc(0.0615313 * var(--s)));
+    border-radius: max(0.5px, calc(0.0512821 * var(--s)));
+  }
+
+  .thumb2 {
+    aspect-ratio: 1/0.5099415204678363;
+    width: 87.69%;
+    margin-left: 6.153133423180593%;
+    border-radius: max(0.5px, calc(0.0512821 * var(--s)));
+  }
+
+  .wide {
+    aspect-ratio: 1/0.3726900584795321;
+    width: 87.69%;
+    margin-left: 5.3908355795148255%;
+    margin-top: max(0.5px, calc(0.015625 * var(--s)));
+    margin-bottom: max(0.5px, calc(0.0422844 * var(--s)));
+  }
+
+  .square {
+    aspect-ratio: 1/0.4;
+    width: 87.69%;
+    margin-left: 5.3908355795148255%;
+    margin-top: 0px;
+    margin-bottom: max(0.5px, calc(0.0870536 * var(--s)));
+  }
+
+  .tile {
+    aspect-ratio: 1/0.8795180722891566;
+    width: 21.3%;
+    margin-left: 80.05390835579514%;
+    margin-top: max(0.5px, calc(0.0687332 * var(--s)));
+    margin-bottom: max(0.5px, calc(0.1830778 * var(--s)));
+    transform: rotate(332deg);
+  }
+
+  .photo {
+    aspect-ratio: 1/0.7280419497080208;
+    width: 75.13%;
+    margin-left: 12.436826145552562%;
+  }
+
+  .noteBox {
+    width: 87.69%;
+    margin-left: 6.153133423180593%;
+    margin-top: max(0.5px, calc(0.0615313 * var(--s)));
+    margin-bottom: max(0.5px, calc(0.0820418 * var(--s)));
+    text-align: start;
+  }
+
+  .gif {
+    aspect-ratio: 1/1.182332410639066;
+    width: 33.29%;
+    margin-left: 6.153133423180593%;
+  }
+}

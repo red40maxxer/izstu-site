@@ -103,9 +103,12 @@ export default function Home() {
                 <div className={`${s.img} ${s.wide}`}>
                   <Image src="/home/wide-still.webp" alt="" fill quality={90} sizes="21vw" />
                 </div>
-                {/* TODO: no destination yet - was pointing off-site. */}
                 <div className={`${s.img} ${s.square}`}>
-                  <Image src="/home/square-link.png" alt="" fill quality={90} sizes="32vw" />
+                  <a
+                    href="https://isabellepstewart.wixsite.com/my-site-3/blank"
+                  >
+                    <Image src="/home/square-link.png" alt="" fill quality={90} sizes="32vw" />
+                  </a>
                 </div>
                 <div className={`${s.img} ${s.tile}`}>
                   <Image src="/home/small-tile.png" alt="" fill quality={90} sizes="7vw" />
